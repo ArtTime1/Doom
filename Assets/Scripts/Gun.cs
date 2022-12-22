@@ -6,12 +6,13 @@ public class Gun : MonoBehaviour
 {
     [SerializeField] private float Range = 20f;
     [SerializeField] private float VerticalRange = 20f;
-    [SerializeField] private float _fireRate;
+    [SerializeField] private float _fireRate = 1f;
     [SerializeField] private float _damage = 2f;
     [SerializeField] private float _smallDamage = 1f;
 
     private float _nextTimeToFire;
     private BoxCollider _gunTrigger;
+    private AudioSource _audioSourse;
 
     public LayerMask RaycastLayerMask;
     public EnemyManager enemyManager;
@@ -21,6 +22,8 @@ public class Gun : MonoBehaviour
         _gunTrigger = GetComponent<BoxCollider>();
         _gunTrigger.size = new Vector3(1, VerticalRange, Range);
         _gunTrigger.center = new Vector3(0, 0, Range * 0.5f);
+
+        _audioSourse = GetComponent<AudioSource>();
     }
 
     
@@ -34,6 +37,8 @@ public class Gun : MonoBehaviour
 
     private void Fire()
     {
+        _audioSourse.Play();
+        
         foreach(var enemy in enemyManager.EnemiesInTrigger)
         {
             var dir = enemy.transform.position - transform.position;
