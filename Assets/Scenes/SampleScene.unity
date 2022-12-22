@@ -182,6 +182,7 @@ GameObject:
   - component: {fileID: 373542257}
   - component: {fileID: 373542256}
   - component: {fileID: 373542261}
+  - component: {fileID: 373542262}
   m_Layer: 0
   m_Name: Enemy (2)
   m_TagString: Untagged
@@ -277,7 +278,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373542255}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.44, y: 1.356, z: -3}
+  m_LocalPosition: {x: -9.44, y: 1.356, z: 7.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -299,6 +300,22 @@ MonoBehaviour:
   _enemyHealth: 2
   enemyManager: {fileID: 75992557}
   GunHitEffect: {fileID: 112989055943288548, guid: 4af202ecb9ca40442a91cbfa3cb61e88, type: 3}
+--- !u!114 &373542262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373542255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6847c4fb57f09764289c0014c340743f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aggroMaterial: {fileID: 2100000, guid: fbfec67bffadd324bb5aec6704144938, type: 2}
+  isAggro: 0
+  _awarenessRadius: 8
+  _playersTransform: {fileID: 464844918}
 --- !u!1 &450854097
 GameObject:
   m_ObjectHideFlags: 0

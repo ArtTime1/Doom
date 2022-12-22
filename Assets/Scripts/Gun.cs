@@ -56,9 +56,7 @@ public class Gun : MonoBehaviour
                     else
                     {
                         enemy.TakeDamage(_damage);
-                    }
-                    
-                    enemy.TakeDamage(_damage);
+                    }                                     
                 }            
             }        
         }
