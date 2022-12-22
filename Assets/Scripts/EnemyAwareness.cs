@@ -8,7 +8,7 @@ public class EnemyAwareness : MonoBehaviour
     private MeshRenderer _meshRenderer;
     public bool isAggro;
     [SerializeField] private float _awarenessRadius = 8f;
-    [SerializeField] private Transform _playersTransform;
+    public Transform _playersTransform;
 
     private void Start()
     {
@@ -22,6 +22,10 @@ public class EnemyAwareness : MonoBehaviour
         if (distance < _awarenessRadius)
         {
             isAggro = true;
+        }
+        else
+        {
+            isAggro = false;
         }
 
         if (isAggro)
