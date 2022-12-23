@@ -461,6 +461,7 @@ GameObject:
   - component: {fileID: 464844917}
   - component: {fileID: 464844916}
   - component: {fileID: 464844919}
+  - component: {fileID: 464844920}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -533,6 +534,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MouseSensitivity: 1.5
   Smoothing: 1.5
+--- !u!114 &464844920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464844915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad7f937ec376a043819563d2cbaceb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 100
+  maxArmor: 50
 --- !u!1 &467693322
 GameObject:
   m_ObjectHideFlags: 0
