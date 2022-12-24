@@ -6,15 +6,23 @@ public class Gun : MonoBehaviour
 {
     [SerializeField] private float Range = 20f;
     [SerializeField] private float VerticalRange = 20f;
-    [SerializeField] private float _fireRate = 1f;
+    [SerializeField] private float _gunShotRadius = 20f;   
     [SerializeField] private float _damage = 2f;
     [SerializeField] private float _smallDamage = 1f;
 
+    [SerializeField] private float _fireRate = 1f;
     private float _nextTimeToFire;
+
+    public int MaxAmmo;
+    private int _ammo;
+    
     private BoxCollider _gunTrigger;
     private AudioSource _audioSourse;
 
     public LayerMask RaycastLayerMask;
+    public LayerMask EnemyLayerMask;
+
+
     public EnemyManager enemyManager;
 
     void Start()
@@ -23,13 +31,15 @@ public class Gun : MonoBehaviour
         _gunTrigger.size = new Vector3(1, VerticalRange, Range);
         _gunTrigger.center = new Vector3(0, 0, Range * 0.5f);
 
+        _ammo = MaxAmmo;
+
         _audioSourse = GetComponent<AudioSource>();
     }
 
     
     void Update()
     {
-        if(Input.GetMouseButtonDown(0) && Time.time > _nextTimeToFire)
+        if(Input.GetMouseButtonDown(0) && Time.time > _nextTimeToFire && _ammo > 0)
         {          
             Fire();
         }
@@ -37,6 +47,14 @@ public class Gun : MonoBehaviour
 
     private void Fire()
     {
+        Collider[] enemyColliders;
+        enemyColliders = Physics.OverlapSphere(transform.position, _gunShotRadius, EnemyLayerMask);
+
+        foreach(var enemyCollider in enemyColliders)
+        {
+            enemyCollider.GetComponent<EnemyAwareness>().isAggro = true;
+        }
+        
         _audioSourse.Play();
         
         foreach(var enemy in enemyManager.EnemiesInTrigger)
@@ -62,6 +80,22 @@ public class Gun : MonoBehaviour
         }
         
         _nextTimeToFire = Time.time + _fireRate;
+
+        _ammo--;
+    }
+
+    public void GiveAmmo(int amount, GameObject pickup)
+    {
+        if(_ammo < MaxAmmo)
+        {
+            _ammo += amount;
+            Destroy(pickup);
+        }
+
+        if(_ammo > MaxAmmo)
+        {
+            _ammo = MaxAmmo;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
