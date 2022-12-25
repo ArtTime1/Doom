@@ -9,9 +9,6 @@ public class ItemPickup : MonoBehaviour
     public bool isArmor;
     public bool isAmmo;
 
-    public PlayerHealth _playerHealth;
-    public Gun gun;
-
     public int amount;
 
     void Start()
@@ -31,17 +28,17 @@ public class ItemPickup : MonoBehaviour
         {
             if (isHealth)
             {
-                _playerHealth.GiveHealth(amount, this.gameObject);
+                other.GetComponent<PlayerHealth>().GiveHealth(amount, this.gameObject);
             }
 
             if (isArmor)
             {
-                _playerHealth.GiveArmor(amount, this.gameObject);
+                other.GetComponent<PlayerHealth>().GiveArmor(amount, this.gameObject);
             }
 
             if (isAmmo)
             {
-                gun.GiveAmmo(amount, this.gameObject);
+               other.GetComponentInChildren<Gun>().GiveAmmo(amount, this.gameObject);
             }       
         }
     }
