@@ -159,7 +159,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _doorAnimator: {fileID: 8897219783586006676}
-  AudioClip: []
+  AudioClip:
+  - {fileID: 8300000, guid: 63f5a492d0ffe2b4b9f10093f2ff55d2, type: 3}
+  - {fileID: 8300000, guid: 058f82e0be13fbb4dab4538c0836fefe, type: 3}
   requeiresKey: 1
   requeireRed: 1
   requeireBlue: 0
