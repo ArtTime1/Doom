@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement _playerMovement;
+    
     [SerializeField] private float _playerSpeed = 20f;
     [SerializeField] private float _momentumDamping = 5f;
     private CharacterController _characterController;
@@ -18,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
+        _playerMovement = this;
     }
 
     

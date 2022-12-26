@@ -23,11 +23,7 @@ public class PlayerHealth : MonoBehaviour
     {
         Death();
 
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            DamagePlayer(30);
-            Debug.Log("Player has been damaged");
-        }
+        
     }
 
     private void DamagePlayer(int damage)
@@ -99,5 +95,14 @@ public class PlayerHealth : MonoBehaviour
         }
 
         UIManager.Instance.UpdateArmor(_armor);
+    }
+
+
+    private void OnCollisionStay(Collision collision)
+    {    
+        if(collision.collider.GetComponent<EnemyAI>())
+        {
+            DamagePlayer(20);          
+        }
     }
 }

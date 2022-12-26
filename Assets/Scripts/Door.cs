@@ -6,9 +6,15 @@ public class Door : MonoBehaviour
 {
     public Animator _doorAnimator;
 
+    private AudioSource _audioSource;
+    public AudioClip[] AudioClip;
     public bool requeiresKey;
     public bool requeireRed, requeireBlue, requeireGreen;
 
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -18,24 +24,30 @@ public class Door : MonoBehaviour
             {
                 if(requeireRed && other.GetComponent<PlayerInventory>().hasRedCard)
                 {
-                    _doorAnimator.SetTrigger("DoorOpen");
+                    PlayAnimationAndClip("DoorOpen", AudioClip[0]);
                 }
 
                 if (requeireBlue && other.GetComponent<PlayerInventory>().hasBlueCard)
                 {
-                    _doorAnimator.SetTrigger("DoorOpen");
+                    PlayAnimationAndClip("DoorOpen", AudioClip[0]);
                 }
 
                 if (requeireGreen && other.GetComponent<PlayerInventory>().hasGreenCard)
                 {
-                    _doorAnimator.SetTrigger("DoorOpen");
+                    PlayAnimationAndClip("DoorOpen", AudioClip[0]);
                 }
             }
             else
             {
-                _doorAnimator.SetTrigger("DoorOpen");
+                PlayAnimationAndClip("DoorOpen", AudioClip[0]);
             }         
         }
+    }
+
+    private void PlayAnimationAndClip(string animName, AudioClip audioClip )
+    {
+        _doorAnimator.SetTrigger(animName);
+        _audioSource.PlayOneShot(audioClip);
     }
 
     private void OnTriggerExit(Collider other)
@@ -46,25 +58,23 @@ public class Door : MonoBehaviour
             {
                 if (requeireRed && other.GetComponent<PlayerInventory>().hasRedCard)
                 {
-                    _doorAnimator.SetTrigger("DoorClose");
+                    PlayAnimationAndClip("DoorClose", AudioClip[1]);
                 }
 
                 if (requeireBlue && other.GetComponent<PlayerInventory>().hasBlueCard)
                 {
-                    _doorAnimator.SetTrigger("DoorClose");
+                    PlayAnimationAndClip("DoorClose", AudioClip[1]);
                 }
 
                 if (requeireGreen && other.GetComponent<PlayerInventory>().hasGreenCard)
                 {
-                    _doorAnimator.SetTrigger("DoorClose");
-                }
-
-             
+                    PlayAnimationAndClip("DoorClose", AudioClip[1]);
+                }           
             }
 
             if (!requeiresKey)
             {
-                _doorAnimator.SetTrigger("DoorClose");
+                PlayAnimationAndClip("DoorClose", AudioClip[1]);
             }
         }
     }

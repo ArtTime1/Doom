@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpriteRotator : MonoBehaviour
-{
-    public Transform Target;
+{   
  
     void Update()
     {
-        transform.LookAt(Target);
+        transform.LookAt(PlayerMovement._playerMovement.transform.position);
     }
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    [SerializeField] private float Range = 20f;
-    [SerializeField] private float VerticalRange = 20f;
+    [SerializeField] private float Range = 10f;
+    [SerializeField] private float VerticalRange = 10f;
     [SerializeField] private float _gunShotRadius = 20f;   
     [SerializeField] private float _damage = 2f;
     [SerializeField] private float _smallDamage = 1f;
@@ -22,6 +22,7 @@ public class Gun : MonoBehaviour
     public LayerMask RaycastLayerMask;
     public LayerMask EnemyLayerMask;
 
+    public Animator GunShoot;
 
     public EnemyManager enemyManager;
 
@@ -40,7 +41,7 @@ public class Gun : MonoBehaviour
 
     
     void Update()
-    {
+    {       
         if(Input.GetMouseButtonDown(0) && Time.time > _nextTimeToFire && _ammo > 0)
         {          
             Fire();
@@ -86,6 +87,8 @@ public class Gun : MonoBehaviour
         _ammo--;
 
         UIManager.Instance.UpdateAmmo(_ammo);
+
+        GunShoot.SetTrigger("Shoot");
     }
 
     public void GiveAmmo(int amount, GameObject pickup)
