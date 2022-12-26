@@ -13,7 +13,9 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
-        _health = MaxHealth;      
+        _health = MaxHealth;
+        UIManager.Instance.UpdateHealth(_health);
+        UIManager.Instance.UpdateArmor(_armor);
     }
 
     
@@ -51,6 +53,9 @@ public class PlayerHealth : MonoBehaviour
         {
             _health -= damage;
         }
+
+        UIManager.Instance.UpdateHealth(_health);
+        UIManager.Instance.UpdateArmor(_armor);
     }
 
     private void Death()
@@ -75,7 +80,9 @@ public class PlayerHealth : MonoBehaviour
         if (_health > MaxHealth)
         {
             _health = MaxHealth;
-        }               
+        }
+
+        UIManager.Instance.UpdateHealth(_health);
     }
 
     public void GiveArmor(int amount, GameObject Pickup)
@@ -89,6 +96,8 @@ public class PlayerHealth : MonoBehaviour
         if (_armor > MaxArmor)
         {
             _armor = MaxArmor;
-        }      
+        }
+
+        UIManager.Instance.UpdateArmor(_armor);
     }
 }

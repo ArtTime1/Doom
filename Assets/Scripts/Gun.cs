@@ -34,6 +34,8 @@ public class Gun : MonoBehaviour
         _ammo = MaxAmmo;
 
         _audioSourse = GetComponent<AudioSource>();
+
+        UIManager.Instance.UpdateAmmo(_ammo);
     }
 
     
@@ -82,6 +84,8 @@ public class Gun : MonoBehaviour
         _nextTimeToFire = Time.time + _fireRate;
 
         _ammo--;
+
+        UIManager.Instance.UpdateAmmo(_ammo);
     }
 
     public void GiveAmmo(int amount, GameObject pickup)
@@ -96,6 +100,8 @@ public class Gun : MonoBehaviour
         {
             _ammo = MaxAmmo;
         }
+
+        UIManager.Instance.UpdateAmmo(_ammo);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -13,16 +13,19 @@ public class KeyCardPickup : MonoBehaviour
             if (isRedKey)
             {
                 other.GetComponent<PlayerInventory>().hasRedCard = true;
+                UIManager.Instance.UpdateKeys("red");
             }
 
             if (isBlueKey)
             {
                 other.GetComponent<PlayerInventory>().hasBlueCard = true;
+                UIManager.Instance.UpdateKeys("blue");
             }
 
             if (isGreenKey)
             {
                 other.GetComponent<PlayerInventory>().hasGreenCard = true;
+                UIManager.Instance.UpdateKeys("green");
             }
 
             Destroy(this.gameObject);

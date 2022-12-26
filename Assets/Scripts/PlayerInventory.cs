@@ -8,12 +8,8 @@ public class PlayerInventory : MonoBehaviour
    
     void Start()
     {
-        
+        UIManager.Instance.ClearKeys();
     }
 
     
-    void Update()
-    {
-        
-    }
 }

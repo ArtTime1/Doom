@@ -58,7 +58,14 @@ public class Door : MonoBehaviour
                 {
                     _doorAnimator.SetTrigger("DoorClose");
                 }
-            }          
+
+             
+            }
+
+            if (!requeiresKey)
+            {
+                _doorAnimator.SetTrigger("DoorClose");
+            }
         }
     }
 }
