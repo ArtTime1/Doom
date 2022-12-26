@@ -38,6 +38,6 @@ public class EnemyAI : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        Debug.Log("ddd");
+       
     }
 }

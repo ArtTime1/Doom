@@ -8,6 +8,9 @@ public class PlayerHealth : MonoBehaviour
     public int MaxHealth;
     private int _health;
 
+    private double timer = 2;
+    private double _HitRate = 2;
+
     public int MaxArmor;
     private int _armor;
 
@@ -99,10 +102,22 @@ public class PlayerHealth : MonoBehaviour
 
 
     private void OnCollisionStay(Collision collision)
-    {    
-        if(collision.collider.GetComponent<EnemyAI>())
+    {
+
+        if (timer >= _HitRate && collision.collider.GetComponent<EnemyAI>())
         {
-            DamagePlayer(20);          
+            DamagePlayer(20);
+
+            timer = 0;
         }
+
+
+        timer += Time.deltaTime;
     }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        timer = _HitRate;
+    }
+
 }
