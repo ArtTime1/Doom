@@ -28,17 +28,17 @@ public class ItemPickup : MonoBehaviour
         {
             if (isHealth)
             {
-                other.GetComponent<PlayerHealth>().GiveHealth(amount, this.gameObject);
+                other.GetComponent<PlayerHealth>().GiveHealth(amount, this.gameObject);                
             }
 
             if (isArmor)
             {
-                other.GetComponent<PlayerHealth>().GiveArmor(amount, this.gameObject);
+                other.GetComponent<PlayerHealth>().GiveArmor(amount, this.gameObject);            
             }
 
             if (isAmmo)
             {
-               other.GetComponentInChildren<Gun>().GiveAmmo(amount, this.gameObject);
+               other.GetComponentInChildren<Gun>().GiveAmmo(amount, this.gameObject);             
             }       
         }
     }

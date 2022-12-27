@@ -44,11 +44,6 @@ public class Door : MonoBehaviour
         }
     }
 
-    private void PlayAnimationAndClip(string animName, AudioClip audioClip )
-    {
-        _doorAnimator.SetTrigger(animName);
-        _audioSource.PlayOneShot(audioClip);
-    }
 
     private void OnTriggerExit(Collider other)
     {
@@ -77,5 +72,11 @@ public class Door : MonoBehaviour
                 PlayAnimationAndClip("DoorClose", AudioClip[1]);
             }
         }
+    }
+
+    private void PlayAnimationAndClip(string animName, AudioClip audioClip)
+    {
+        _doorAnimator.SetTrigger(animName);
+        _audioSource.PlayOneShot(audioClip);
     }
 }
