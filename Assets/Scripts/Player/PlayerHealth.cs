@@ -11,23 +11,45 @@ public class PlayerHealth : MonoBehaviour
     private double timer = 2;
     private double _HitRate = 2;
 
+    public GameObject Restart;
+    public GameObject PlayerUI;
+
     public int MaxArmor;
     private int _armor;
 
-    void Start()
+    private void OnEnable()
     {
         _health = MaxHealth;
+    }
+
+    private void Start()
+    {
+        if (UIManager.Instance)
+        {
         UIManager.Instance.UpdateHealth(_health);
         UIManager.Instance.UpdateArmor(_armor);
+
+        }
     }
 
-    
     void Update()
     {
-        Death();
-
-        
+        Death();        
     }
+
+    /*public int Health
+    {
+        get => _health;
+        set
+        {
+            if (value <= 0)
+            {
+                _health = value;
+                Death();
+            }
+        }
+
+    }*/
 
     private void DamagePlayer(int damage)
     {
@@ -46,11 +68,13 @@ public class PlayerHealth : MonoBehaviour
                 _armor = 0;
 
                 _health -= remainingDamage;
+                //Health -= remainingDamage;
             }
         }
         else
         {
             _health -= damage;
+            //Health -= damage;
         }
 
         UIManager.Instance.UpdateHealth(_health);
@@ -63,8 +87,10 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.Log("You are dead");
 
-            Scene currentScene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(currentScene.buildIndex);
+            Restart.SetActive(true);
+            PlayerUI.SetActive(false);
+            Time.timeScale = 0.0f;
+            GameManager.Instance.State = GameManager.GameState.InGame_dead;
         }
     }
 
@@ -96,6 +122,7 @@ public class PlayerHealth : MonoBehaviour
         {
             _armor = MaxArmor;
         }
+
 
         UIManager.Instance.UpdateArmor(_armor);
     }

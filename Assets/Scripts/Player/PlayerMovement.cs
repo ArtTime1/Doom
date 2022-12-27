@@ -5,20 +5,24 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public static PlayerMovement _playerMovement;
-    
+
     [SerializeField] private float _playerSpeed = 20f;
     [SerializeField] private float _momentumDamping = 5f;
     private CharacterController _characterController;
-    
+
     private Vector3 _inputVector;
     private Vector3 _movementVector;
     private float _gravity = -9.81f;
 
+    private AudioSource audioSource;
+
     [SerializeField] private Animator _camAnimator;
     private bool isWalking;
 
+
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         _characterController = GetComponent<CharacterController>();
         _playerMovement = this;
     }
@@ -26,9 +30,19 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
-        GetInput();
-        Movement();
-        CameraAnimation();
+       
+        if (GameManager.Instance.State == GameManager.GameState.InGame)
+        {
+
+            
+            GetInput();
+            Movement();
+            CameraAnimation();
+        }
+        else
+        {
+            audioSource.Play();
+        }
     }
 
     private void GetInput()
@@ -42,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
             _inputVector.Normalize();
             _inputVector = transform.TransformDirection(_inputVector);
 
-            isWalking = true;
+            isWalking = true;            
         }
         else
         {

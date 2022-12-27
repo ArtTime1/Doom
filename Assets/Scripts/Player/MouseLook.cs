@@ -14,14 +14,17 @@ public class MouseLook : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+       
     }
 
     void Update()
     {
-        GetInput();
-        ModifyInput();
-        RotatePlayer();
+        if (GameManager.Instance.State == GameManager.GameState.InGame)
+        {
+            GetInput();
+            ModifyInput();
+            RotatePlayer();
+        }     
     }
 
     private void GetInput()

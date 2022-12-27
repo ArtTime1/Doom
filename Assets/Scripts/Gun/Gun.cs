@@ -41,11 +41,14 @@ public class Gun : MonoBehaviour
 
     
     void Update()
-    {       
-        if(Input.GetMouseButtonDown(0) && Time.time > _nextTimeToFire && _ammo > 0)
-        {          
-            Fire();
-        }
+    {
+        if (GameManager.Instance.State == GameManager.GameState.InGame)
+        {
+            if (Input.GetMouseButtonDown(0) && Time.time > _nextTimeToFire && _ammo > 0)
+            {
+                Fire();
+            }
+        }   
     }
 
     private void Fire()

@@ -21,10 +21,13 @@ public class Enemy : MonoBehaviour
     
     void Update()
     {
-        if(_enemyHealth <= 0)
+        if (GameManager.Instance.State == GameManager.GameState.InGame)
         {
-            enemyManager.RemoveEnemy(this);
-            Destroy(gameObject);
+            if (_enemyHealth <= 0)
+            {
+                enemyManager.RemoveEnemy(this);
+                Destroy(gameObject);
+            }
         }
     }
 

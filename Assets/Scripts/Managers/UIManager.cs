@@ -33,18 +33,12 @@ public class UIManager : MonoBehaviour
         else
         {
             _instance = this;
-        }
+        }       
     }
 
     void Start()
     {
-        
-    }
-
-  
-    void Update()
-    {
-        
+        UpdateHealthIndicator(100);
     }
 
     public void UpdateHealth(int healthValue)

@@ -16,22 +16,23 @@ public class EnemyAwareness : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var distance = Vector3.Distance(transform.position, _playersTransform.position);
-
-        if (distance < _awarenessRadius)
+        if (GameManager.Instance.State != GameManager.GameState.InGame)
         {
-            isAggro = true;
+            return;
         }
-        else
+        if (GameManager.Instance.State == GameManager.GameState.InGame)
         {
-            isAggro = false;
-        }
+            var distance = Vector3.Distance(transform.position, _playersTransform.position);
 
-        if (isAggro)
-        {
-           
-        }
-
+            if (distance < _awarenessRadius)
+            {
+                isAggro = true;
+            }
+            else
+            {
+                isAggro = false;
+            }
+        }           
     }
 
 }

@@ -22,18 +22,26 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        if (_enemyAwareness.isAggro)
+        if (GameManager.Instance.State != GameManager.GameState.InGame)
         {
-            //_enemyNavMeshAgent.SetDestination(_enemyAwareness._playersTransform.position);
+            return;
+        }
 
-            Vector3 playerDirection = PlayerMovement._playerMovement.transform.position - transform.position;
-            _rigidbody.velocity = playerDirection.normalized * moveSpeed;
-        }
-        else
+        if (GameManager.Instance.State == GameManager.GameState.InGame)
         {
-            // _enemyNavMeshAgent.SetDestination(transform.position);
-            _rigidbody.velocity = Vector3.zero;
-        }
+            if (_enemyAwareness.isAggro)
+            {
+                //_enemyNavMeshAgent.SetDestination(_enemyAwareness._playersTransform.position);
+
+                Vector3 playerDirection = PlayerMovement._playerMovement.transform.position - transform.position;
+                _rigidbody.velocity = playerDirection.normalized * moveSpeed;
+            }
+            else
+            {
+                // _enemyNavMeshAgent.SetDestination(transform.position);
+                _rigidbody.velocity = Vector3.zero;
+            }
+        }          
     }
 
     private void OnCollisionStay(Collision collision)
